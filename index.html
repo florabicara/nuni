@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aia Bundo - Warisan Sehat Ranah Minang</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333333;
+            background-color: #F5F5F5;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        .kaluak-paku-divider {
+            position: relative;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #C5A475, transparent);
+        }
+        .kaluak-paku-divider:before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 10px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0,10 Q25,20 50,10 T100,10' fill='none' stroke='%23C5A475' stroke-width='2'/%3E%3C/svg%3E") no-repeat center;
+        }
+        .pucuak-rabuang-bg {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M50,0 L100,50 L50,100 L0,50 Z' fill='none' stroke='%23C5A475' stroke-width='0.5' opacity='0.2'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+        }
+        .hover-grow {
+            transition: transform 0.3s ease;
+        }
+        .hover-grow:hover {
+            transform: scale(1.03);
+        }
+        .product-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        .product-card:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+        .btn-primary {
+            background-color: #2F4F4F;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #1E3E3E;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background-color: #C5A475;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: #B59465;
+            transform: translateY(-2px);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #C5A475;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-cover bg-center" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"%3E%3Cpath d=\"M50,10 Q60,30 70,30 Q80,30 80,50 Q80,70 70,70 Q60,70 50,90 Q40,70 30,70 Q20,70 20,50 Q20,30 30,30 Q40,30 50,10\" fill=\"%232F4F4F\" stroke=\"%23C5A475\" stroke-width=\"2\" /%3E%3C/svg%3E');"></div>
+                <a href="#home" class="text-2xl font-bold" style="color: #2F4F4F;">Aia Bundo</a>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-700 hover:text-2F4F4F">Beranda</a>
+                <a href="#about" class="nav-link text-gray-700 hover:text-2F4F4F">Tentang Kami</a>
+                <a href="#products" class="nav-link text-gray-700 hover:text-2F4F4F">Produk</a>
+                <a href="#journey" class="nav-link text-gray-700 hover:text-2F4F4F">Jejak Sehat</a>
+                <a href="#recipes" class="nav-link text-gray-700 hover:text-2F4F4F">Dapur Seimbang</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-2F4F4F">Kontak</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-2F4F4F focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2 px-4 shadow-lg">
+            <a href="#home" class="block py-2 text-gray-700 hover:text-2F4F4F">Beranda</a>
+            <a href="#about" class="block py-2 text-gray-700 hover:text-2F4F4F">Tentang Kami</a>
+            <a href="#products" class="block py-2 text-gray-700 hover:text-2F4F4F">Produk</a>
+            <a href="#journey" class="block py-2 text-gray-700 hover:text-2F4F4F">Jejak Sehat</a>
+            <a href="#recipes" class="block py-2 text-gray-700 hover:text-2F4F4F">Dapur Seimbang</a>
+            <a href="#contact" class="block py-2 text-gray-700 hover:text-2F4F4F">Kontak</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(47, 79, 79, 0.7), rgba(47, 79, 79, 0.7)), url('https://images.unsplash.com/photo-1513530176992-0cf39c4cbed4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+        <div class="container mx-auto px-4 text-center text-white fade-in">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Warisan Sehat Ranah Minang</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Aia Bundo hadir memadukan resep Jamu Saintifik teruji dengan kekayaan alam Sumatera Barat untuk membantu menjaga tekanan darah Anda.</p>
+            <a href="#products" class="btn-primary inline-block px-8 py-3 rounded-full text-lg font-semibold">Jelajahi Produk Kami</a>
+        </div>
+        <div class="absolute bottom-10 left-0 right-0 flex justify-center">
+            <a href="#intro" class="text-white animate-bounce">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #2F4F4F;">Menikmati Hidangan Minang Tanpa Cemas</h2>
+                <div class="kaluak-paku-divider w-1/4 mx-auto my-6"></div>
+                <p class="text-lg max-w-3xl mx-auto">Kuliner Minang yang kaya rasa seringkali mengandung kadar garam dan lemak tinggi. Aia Bundo hadir sebagai penyeimbang gaya hidup, memadukan kearifan lokal dengan validasi ilmiah untuk membantu Anda menikmati masakan Minang dengan lebih tenang.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-16 fade-in">
+                <div class="text-center max-w-xs">
+                    <div class="w-20 h-20 mx-auto mb-4 flex items-center justify-center rounded-full bg-2F4F4F text-white">
+                        <i class="fas fa-flask text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2" style="color: #2F4F4F;">Formula Saintifik</h3>
+                    <p>Teruji klinis oleh Badan Litbangkes Kemenkes RI</p>
+                </div>
+                
+                <div class="relative">
+                    <div class="w-64 h-64 rounded-full overflow-hidden shadow-lg floating">
+                        <img src="https://images.unsplash.com/photo-1571934811355-5e5b6bff9b05?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Aia Bundo Product" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <div class="text-center max-w-xs">
+                    <div class="w-20 h-20 mx-auto mb-4 flex items-center justify-center rounded-full bg-2F4F4F text-white">
+                        <i class="fas fa-leaf text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2" style="color: #2F4F4F;">100% Alami</h3>
+                    <p>Dipanen dari petani lokal pilihan di tanah Minang</p>
+                </div>
+            </div>
+            
+            <div class="text-center fade-in">
+                <div class="w-20 h-20 mx-auto mb-4 flex items-center justify-center rounded-full bg-2F4F4F text-white">
+                    <i class="fas fa-mug-hot text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2" style="color: #2F4F4F;">Sajian Praktis</h3>
+                <p class="max-w-md mx-auto">Nikmati khasiat jamu hanya dalam 3 menit seduhan</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Healthy Journey Preview -->
+    <section class="py-16 pucuak-rabuang-bg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-8 fade-in">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-4" style="color: #2F4F4F;">Kenali Petani di Balik Cangkir Anda</h2>
+                    <div class="kaluak-paku-divider w-1/4 my-6"></div>
+                    <p class="mb-6">Kami percaya pada transparansi. Lacak perjalanan teh Anda dari kebun-kebun subur di Solok dan Agam hingga sampai ke tangan Anda.</p>
+                    <a href="#journey" class="btn-secondary inline-block px-8 py-3 rounded-full text-lg font-semibold">Lihat Jejak Sehat Kami</a>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1529333166447-3398d62e8b01?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="West Sumatra Map" class="rounded-lg shadow-lg w-full">
+                        <div class="absolute -bottom-4 -right-4 bg-white p-2 rounded-lg shadow-lg">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M20,50 Q35,20 50,50 T80,50' fill='none' stroke='%232F4F4F' stroke-width='2'/%3E%3C/svg%3E" alt="Minangkabau Ornament" class="w-16 h-16">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl font-bold mb-4" style="color: #2F4F4F;">Apa Kata Mereka Tentang Aia Bundo?</h2>
+                <div class="kaluak-paku-divider w-1/4 mx-auto my-6"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 fade-in">
+                <div class="bg-white p-6 rounded-lg shadow-lg hover-grow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Testimonial" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold" style="color: #2F4F4F;">Dr. Rina Wijaya</h4>
+                            <p class="text-sm text-gray-600">Dokter, Padang</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"Sebagai dokter yang juga pecinta rendang, Aia Bundo membantu saya menjaga tekanan darah tetap stabil tanpa harus menghindari masakan Minang kesukaan."</p>
+                    <div class="flex mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-lg hover-grow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Testimonial" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold" style="color: #2F4F4F;">H. Fauzi Abdullah</h4>
+                            <p class="text-sm text-gray-600">Pengusaha, Jakarta</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"Sebagai perantau Minang, Aia Bundo mengingatkan saya pada ramuan tradisional ibu di kampung, tapi dengan kemasan modern yang praktis."</p>
+                    <div class="flex mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-lg hover-grow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Testimonial" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold" style="color: #2F4F4F;">Siti Rahmah</h4>
+                            <p class="text-sm text-gray-600">Ibu Rumah Tangga, Bukittinggi</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"Saya rutin minum Aia Bundo setelah makan. Tekanan darah yang biasanya naik setelah makan gulai sekarang lebih terkontrol."</p>
+                    <div class="flex mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #2F4F4F;">Kisah Aia Bundo</h2>
+                <h3 class="text-xl text-gray-600">Dari Kearifan Ibu untuk Kebaikan Kita</h3>
+                <div class="kaluak-paku-divider w-1/4 mx-auto my-6"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-8 mb-16 fade-in">
+                <div class="md:w-1/2">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1591348278863-a8fb3887e2ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Traditional Herbs" class="rounded-lg shadow-lg w-full">
+                        <div class="absolute -bottom-4 -right-4 bg-white p-4 rounded-lg shadow-lg w-16 h-16 flex items-center justify-center">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,10 Q60,30 70,30 Q80,30 80,50 Q80,70 70,70 Q60,70 50,90 Q40,70 30,70 Q20,70 20,50 Q20,30 30,30 Q40,30 50,10' fill='none' stroke='%23C5A475' stroke-width='2' /%3E%3C/svg%3E" alt="Minangkabau Ornament" class="w-full h-full">
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold mb-4" style="color: #2F4F4F;">Filosofi Kami</h3>
+                    <p class="mb-4">Nama "Aia Bundo" terinspirasi dari Bundo Kanduang, simbol kebijaksanaan dan kasih sayang dalam budaya Minangkabau. Seperti air yang mengalir lembut namun mampu mengikis batu, Aia Bundo mewakili warisan pengetahuan turun-temurun yang terus memberikan manfaat.</p>
+                    <p>Kami menghadirkan kembali resep-resep tradisional yang biasa dibuat oleh para Bundo (ibu) di dapur mereka, dengan validasi ilmiah untuk memastikan keamanan dan khasiatnya.</p>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-8 mb-16 fade-in">
+                <div class="md:w-1/2 order-2 md:order-1">
+                    <h3 class="text-2xl font-semibold mb-4" style="color: #2F4F4F;">Misi Kami</h3>
+                    <p class="mb-4 font-semibold">Menyehatkan Ranah Minang, Memberdayakan Petani Lokal</p>
+                    <p class="mb-4">Aia Bundo berkomitmen untuk melestarikan pengetahuan jamu tradisional Minangkabau sambil mendukung penelitian ilmiah di bidang herbal. Kami bekerja langsung dengan petani lokal di Sumatera Barat untuk memastikan kualitas bahan baku sekaligus meningkatkan kesejahteraan mereka.</p>
+                    <p>Setiap kotak Aia Bundo yang Anda beli turut berkontribusi pada program pendidikan kesehatan dan pelestarian tanaman obat di Sumatera Barat.</p>
+                </div>
+                <div class="md:w-1/2 order-1 md:order-2">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Farmers" class="rounded-lg shadow-lg w-full">
+                        <div class="absolute -top-4 -left-4 bg-white p-4 rounded-lg shadow-lg w-16 h-16 flex items-center justify-center">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20,50 Q35,20 50,50 T80,50' fill='none' stroke='%232F4F4F' stroke-width='2'/%3E%3C/svg%3E" alt="Minangkabau Ornament" class="w-full h-full">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white p-8 rounded-lg shadow-lg fade-in">
+                <h3 class="text-2xl font-semibold mb-4 text-center" style="color: #2F4F4F;">Mengapa "Formula Saintifik"?</h3>
+                <div class="kaluak-paku-divider w-1/4 mx-auto my-6"></div>
+                <p class="mb-4">Aia Bundo dikembangkan berdasarkan program Saintifikasi Jamu yang digagas oleh Kementerian Kesehatan RI. Program ini bertujuan untuk membuktikan khasiat jamu secara ilmiah melalui uji klinis yang ketat.</p>
+                <p>Setiap bahan dalam Aia Bundo telah melalui penelitian untuk memastikan:</p>
+                <ul class="list-disc pl-6 mt-4 space-y-2">
+                    <li>Keamanan dan dosis yang tepat</li>
+                    <li>Efektivitas dalam membantu mengelola tekanan darah</li>
+                    <li>Standardisasi kualitas dari kebun hingga cangkir</li>
+                    <li>Konsistensi khasiat dalam setiap seduhan</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #2F4F4F;">Aia Bundo - Teh Tensi Ranah Minang</h2>
+                <div class="kaluak-paku-divider w-1/4 mx-auto my-6"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 fade-in">
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1597318181409-cf64f0d20030?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Aia Bundo Product" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: #2F4F4F;">Aia Bundo Original</h3>
+                        <p class="text-gray-600 mb-4">Teh herbal untuk membantu mengelola tekanan darah tinggi</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg" style="color: #2F4F4F;">Rp 75.000</span>
+                            <button class="btn-primary px-4 py-2 rounded-full text-sm">Tambah ke Keranjang</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1597318181409-cf64f0d20030?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Aia Bundo Product" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: #2F4F4F;">Paket Sehat Sebulan</h3>
+                        <p class="text-gray-600 mb-4">3 kotak Aia Bundo Original (Hemat 15%)</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg" style="color: #2F4F4F;">Rp 191.250</span>
+                            <button class="btn-primary px-4 py-2 rounded-full text-sm">Tambah ke Keranjang</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1597318181409-cf64f0d20030?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Aia Bundo Product" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: #2F4F4F;">Aia Bundo Gift Box</h3>
+                        <p class="text-gray-600 mb-4">Paket spesial berisi 2 kotak teh + cangkir keramik</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg" style="color: #2F4F4F;">Rp 195.000</span>
+                            <button class="btn-primary px-4 py-2 rounded-full text-sm">Tambah ke Keranjang</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-50 p-8 rounded-lg shadow-inner fade-in">
+                <h3 class="text-2xl font-semibold mb-4 text-center" style="color: #2F4F4F;">Manfaat & Komposisi</h3>
+                <div class="kaluak-paku-divider w-1/4 mx-auto my-6"></div>
+                
+                <div class="mb-6">
+                    <h4 class="text-lg font-semibold mb-2" style="color: #2F4F4F;">Manfaat Utama</h4>
+                    <p>Diformulasikan secara ilmiah untuk membantu meringankan gejala tekanan darah tinggi ringan dan menjaga kesehatan kardiovaskular Anda.</p>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="text-lg font-semibold mb-4" style="color: #2F4F4F;">Komposisi & Khasiat</h4>
+                    <div class="space-y-4">
+                        <div class="accordion-item border-b border-gray-200 pb-2">
+                            <button class="accordion-button flex justify-between items-center w-full text-left font-medium" style="color: #2F4F4F;">
+                                <span>Herba Seledri (Apium graveolens)</span>
+                                <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                            </button>
+                            <div class="accordion-content hidden pt-2">
+                                <p>Mengandung senyawa phthalide yang membantu merelaksasi otot-otot di sekitar pembuluh darah, sehingga dapat membantu menurunkan tekanan darah.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item border-b border-gray-200 pb-2">
+                            <button class="accordion-button flex justify-between items-center w-full text-left font-medium" style="color: #2F4F4F;">
+                                <span>Herba Pegagan (Centella asiatica)</span>
+                                <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                            </button>
+                            <div class="accordion-content hidden pt-2">
+                                <p>Kaya akan triterpenoid yang dapat membantu meningkatkan sirkulasi darah dan mengurangi stres oksidatif pada pembuluh darah.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item border-b border-gray-200 pb-2">
+                            <button class="accordion-button flex justify-between items-center w-full text-left font-medium" style="color: #2F4F4F;">
+                                <span>Rimpang Kunyit (Curcuma longa)</span>
+                                <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                            </button>
+                            <div class="accordion-content hidden pt-2">
+                                <p>Kurkumin dalam kunyit memiliki efek antiinflamasi dan antioksidan yang dapat membantu menjaga kesehatan pembuluh darah.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-2" style="color: #2F4F4F;">Cara Penyajian & Peringatan</h4>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Seduh 1 kantung teh dalam 150ml air panas (90°C) selama 3-5 menit</li>
+                        <li>Dikonsumsi 1-2 kali sehari, sebaiknya setelah makan</li>
+                        <li>Tidak dianjurkan untuk ibu hamil dan menyusui</li>
+                        <li>Jika sedang dalam pengobatan medis, konsultasikan dengan dokter terlebih dahulu</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Healthy Journey Section -->
+    <section id="journey" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #2F4F4F;">Dari Kebun Subur Solok & Agam ke Cangkir Anda</h2>
+                <div class="kaluak-paku-divider w-1/4 mx-auto my-6"></div>
+            </div>
+            
+            <div class="bg-white p-8 rounded-lg shadow-lg mb-12 fade-in">
+                <div class="relative h-96 bg-gray-200 rounded-lg overflow-hidden">
+                    <!-- This would be an interactive map in a real implementation -->
+                    <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="West Sumatra Map" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100" style="color: #2F4F4F;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="absolute top-20 left-20 bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100" style="color: #2F4F4F;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="absolute bottom-20 right-20 bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100" style="color: #2F4F4F;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 fade-in">
+                <div class="bg-white p-6 rounded-lg shadow-md hover-grow">
+                    <div class="w-full h-48 mb-4 overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Farmer" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2" style="color: #2F4F4F;">Pak Rizal - Solok</h3>
+                    <p class="text-gray-600 mb-2">Petani Seledri sejak 1998</p>
+                    <p>"Saya bangga bisa berkontribusi pada produk yang membantu kesehatan banyak orang. Kami menanam dengan cara organik seperti diajarkan nenek moyang."</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover-grow">
+                    <div class="w-full h-48 mb-4 overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Farm" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2" style="color: #2F4F4F;">Kebun Teh Lembah Harau</h3>
+                    <p class="text-gray-600 mb-2">Agam, Sumatera Barat</p>
+                    <p>Perkebunan seluas 12 hektar di ketinggian 1.200 mdpl yang menghasilkan daun pegagan berkualitas tinggi dengan kandungan aktif optimal.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover-grow">
+                    <div class="w-full h-48 mb-4 overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Farmer" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2" style="color: #2F4F4F;">Bu Yani - Bukittinggi</h3>
+                    <p class="text-gray-600 mb-2">Petani Kunyit sejak 2005</p>
+                    <p>"Kunyit kami ditanam tanpa pestisida kimia. Saya senang bisa bekerja sama dengan Aia Bundo yang menghargai kualitas dan tradisi kami."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Balanced Kitchen Section -->
+    <section id="recipes" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #2F4F4F;">Dapur Minang Seimbang</h2>
+                <p class="text-xl">Nikmat Masakan Minang, Sehat Tetap Terjaga</p>
+                <div class="kaluak-paku-divider w-1/4 mx-auto my-6"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in">
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-grow">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1631898034045-7c2d875a2f0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Healthy Rendang" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full mb-2" style="background-color: #C5A475; color: white;">Rendang Bijak Garam</span>
+                        <h3 class="text-xl font-semibold mb-2" style="color: #2F4F4F;">Rendang Daging Bebas Khawatir</h3>
+                        <p class="text-gray-600 mb-4">Versi lebih sehat dari masakan ikonik Minang dengan mengurangi garam tanpa mengorbankan rasa.</p>
+                        <a href="#" class="inline-flex items-center text-sm font-semibold" style="color: #2F4F4F;">
+                            Lihat Resep <i class="fas fa-chevron-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-grow">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Healthy Gulai" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full mb-2" style="background-color: #C5A475; color: white;">Gulai Lebih Sehat</span>
+                        <h3 class="text-xl font-semibold mb-2" style="color: #2F4F4F;">Gulai Daun Singkong Anti Kolesterol</h3>
+                        <p class="text-gray-600 mb-4">Mengganti santan kental dengan santan encer dan menambahkan rempah-rempah penurun kolesterol.</p>
+                        <a href="#" class="inline-flex items-center text-sm font-semibold" style="color: #2F4F4F;">
+                            Lihat Resep <i class="fas fa-chevron-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-grow">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Healthy Sambal" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full mb-2" style="background-color: #C5A475; color: white;">Sambal Inovatif</span>
+                        <h3 class="text-xl font-semibold mb-2" style="color: #2F4F4F;">Sambal Lado Mudo Rendam Garam</h3>
+                        <p class="text-gray-600 mb-4">Sambal khas Minang dengan 60% lebih sedikit garam namun tetap pedas menggugah selera.</p>
+                        <a href="#" class="inline-flex items-center text-sm font-semibold" style="color: #2F4F4F;">
+                            Lihat Resep <i class="fas fa-chevron-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 fade-in">
+                <a href="#" class="btn-secondary inline-block px-8 py-3 rounded-full text-lg font-semibold">Lihat Semua Resep</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #2F4F4F;">Hubungi Kami</h2>
+                <div class="kaluak-paku-divider w-1/4 mx-auto my-6"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-8 fade-in">
+                <div class="md:w-1/2">
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4" style="color: #2F4F4F;">Kirim Pesan</h3>
+                        <form>
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 mb-2">Nama Lengkap</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2" style="border-color: #C5A475; focus:ring-2F4F4F">
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2" style="border-color: #C5A475; focus:ring-2F4F4F">
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block text-gray-700 mb-2">Pesan</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2" style="border-color: #C5A475; focus:ring-2F4F4F"></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary w-full py-3 rounded-full font-semibold">Kirim Pesan</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-white p-8 rounded-lg shadow-lg h-full">
+                        <h3 class="text-xl font-semibold mb-4" style="color: #2F4F4F;">Informasi Kontak</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center mr-4" style="background-color: #2F4F4F; color: white;">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold" style="color: #2F4F4F;">Alamat</h4>
+                                    <p>Jl. Perintis Kemerdekaan No. 12, Padang, Sumatera Barat</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center mr-4" style="background-color: #2F4F4F; color: white;">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold" style="color: #2F4F4F;">Telepon</h4>
+                                    <p>+62 751 1234567</p>
+                                    <p>+62 823 4567 8910 (WhatsApp)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center mr-4" style="background-color: #2F4F4F; color: white;">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold" style="color: #2F4F4F;">Email</h4>
+                                    <p>info@aiabundo.com</p>
+                                    <p>cs@aiabundo.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center mr-4" style="background-color: #2F4F4F; color: white;">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold" style="color: #2F4F4F;">Jam Operasional</h4>
+                                    <p>Senin - Jumat: 08.00 - 17.00 WIB</p>
+                                    <p>Sabtu: 08.00 - 14.00 WIB</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-semibold mb-4" style="color: #2F4F4F;">Ikuti Kami</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color: #2F4F4F; color: white;">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color: #2F4F4F; color: white;">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color: #2F4F4F; color: white;">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color: #2F4F4F; color: white;">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-2F4F4F text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-cover bg-center" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"%3E%3Cpath d=\"M50,10 Q60,30 70,30 Q80,30 80,50 Q80,70 70,70 Q60,70 50,90 Q40,70 30,70 Q20,70 20,50 Q20,30 30,30 Q40,30 50,10\" fill=\"%23F5F5F5\" stroke=\"%23C5A475\" stroke-width=\"2\" /%3E%3C/svg%3E');"></div>
+                        <span class="text-xl font-bold">Aia Bundo</span>
+                    </div>
+                    <p class="mb-4">Warisan Sehat Ranah Minang dalam setiap seduhan.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-C5A475"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white hover:text-C5A475"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white hover:text-C5A475"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-white hover:text-C5A475"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4" style="color: #C5A475;">Produk</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-C5A475">Aia Bundo Original</a></li>
+                        <li><a href="#" class="hover:text-C5A475">Paket Sehat Sebulan</a></li>
+                        <li><a href="#" class="hover:text-C5A475">Aia Bundo Gift Box</a></li>
+                        <li><a href="#" class="hover:text-C5A475">Semua Produk</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4" style="color: #C5A475;">Tautan</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-C5A475">Tentang Kami</a></li>
+                        <li><a href="#" class="hover:text-C5A475">Jejak Sehat</a></li>
+                        <li><a href="#" class="hover:text-C5A475">Dapur Seimbang</a></li>
+                        <li><a href="#" class="hover:text-C5A475">Blog</a></li>
+                        <li><a href="#" class="hover:text-C5A475">Kontak</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4" style="color: #C5A475;">Newsletter</h4>
+                    <p class="mb-4">Dapatkan tips kesehatan dan promo menarik langsung ke email Anda.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Alamat Email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+                        <button type="submit" class="px-4 py-2 rounded-r-lg" style="background-color: #C5A475;">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2023 Aia Bundo. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-C5A475">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-C5A475">Syarat & Ketentuan</a>
+                    <a href="#" class="hover:text-C5A475">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                button.classList.toggle('active');
+                content.classList.toggle('hidden');
+                
+                if (content.classList.contains('hidden')) {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                } else {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                }
+            });
+        });
+
+        // Scroll animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', fadeInOnScroll);
+        window.addEventListener('load', fadeInOnScroll);
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=nothinxxx/aia-bundo" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
+</html>
